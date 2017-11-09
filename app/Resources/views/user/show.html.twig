@@ -1,0 +1,39 @@
+{% set title = user.username %}
+{% extends 'base.html.twig' %}
+{% block title %}User - {{ user.username }}{% endblock %}
+
+{% block body %}
+    {% if form %}
+        <div class="wrapper-index">
+            {{ form_start(form, {'action': path('vant_new')}) }}
+            {{ form_widget(form.content, { 'attr': {'placeholder': 'Enter your vant'} }) }}<br />
+            {{ form_widget(form.type, { 'attr': {'class': 'foo'} }) }}<br />
+            {{ form_widget(form.save, { 'label': 'Write' }) }}
+            {{ form_end(form) }}
+        </div>
+    {% endif %}
+
+    {% if vants %}
+        {% for vant in vants %}
+            <div class="box1">
+                {{ vant.content|e }}<br />
+                {{ vant.createdAt|date('d.m.Y, H:i:s') }}
+                {% if vant.user.id == app.user.id %}
+                    <br /><br />
+                    [<a href="{{ path('vant_edit', {id: vant.id}) }}">редактировать</a>]
+                    |
+                    [<a href="{{ path('vant_remove', {id: vant.id}) }}">удалить</a>]
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="error">
+            {% if user.id == app.user.id %}
+                You don't have any vants!
+            {% else %}
+                {{ user.username }} don't have any vants!
+            {% endif %}
+        </div>
+    {% endif %}
+
+{% endblock %}

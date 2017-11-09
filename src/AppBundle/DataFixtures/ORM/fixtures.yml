@@ -1,0 +1,20 @@
+AppBundle\Entity\User:
+  user0:
+    username: "yavlados"
+    email: "i@byvlad.ru"
+    enabled: 1
+    plainPassword: "somepassword"
+    roles: [ROLE_SUPERADMIN]
+
+  user{1..10}:
+    username: <lexify('????????')>
+    email: <email()>
+    enabled: 1
+    plainPassword: <lexify>
+    roles: [ROLE_USER]
+
+AppBundle\Entity\Vant:
+  vant_{1..200}:
+    user: '@user_*'
+    content: <sentence(20)>
+    type: <randomElement(array('public','protected','private'))>

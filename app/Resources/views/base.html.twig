@@ -2,12 +2,26 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{{ title }}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}
+        <link href="{{ asset('style.css') }}" media="screen" rel="stylesheet" />
+        {% endblock %}
     </head>
     <body>
+        <div class="head_title">
+            {% block title %}{% endblock %}
+        </div>
+        {% for message in app.session.flashBag.get('success') %}
+        <div class="message">
+            {{ message }}
+        </div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        <div class="title_page">
+            &copy; {{ "now"|date('Y') }}
+        </div>
     </body>
 </html>

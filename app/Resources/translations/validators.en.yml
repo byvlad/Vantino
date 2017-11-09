@@ -1,0 +1,3 @@
+vant.new.not_blank: "Vant can not be blank"
+vant.new.min: "Vant must be at least 2 characters"
+vant.new.max: "Vant must be maximum 255 characters"
