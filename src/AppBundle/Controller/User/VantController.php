@@ -33,10 +33,6 @@ class VantController extends Controller
             $errors = $validator->validate($vant);
 
             if($form->isValid()) {
-                $file = $request->files->get('image');
-
-                dump($file); die;
-
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($vant);
                 $em->flush();

@@ -1,7 +1,13 @@
 {% for vant in vants %}
+    {% dump(vant) %}
     <div class="box1">
         <b>{{ vant.user.username }}</b>, {{ vant.createdAt|date('d.m.Y, H:i:s') }}:<br />
         {{ vant.content|hashtagify|nl2br }}
+        {% if vant.imageName %}
+            <br /><br />
+            <img src="{{ asset('jpg.gif') }}">
+            <a href="{{ vich_uploader_asset(vant, 'imageFile') }}">{{ vant.imageName }}</a>
+        {% endif %}
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             {% if vant.user.id == app.user.id %}
                 <br /><br />
