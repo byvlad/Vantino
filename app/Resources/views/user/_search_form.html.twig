@@ -1,0 +1,6 @@
+<div class="box1">
+    {{ form_start(formSearch, {'action': path('search_all')}) }}
+    {{ form_widget(formSearch.slug, { 'attr': {'placeholder': 'Enter query...'} }) }}
+    {{ form_widget(formSearch.search, { 'label': 'Search' }) }}
+    {{ form_end(formSearch) }}
+</div>

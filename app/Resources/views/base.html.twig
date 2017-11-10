@@ -12,6 +12,19 @@
         <div class="head_title">
             {% block title %}{% endblock %}
         </div>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="title_page">
+            <a href="{{ path('profile_page', {'username' : app.user.username}) }}">{{ app.user.username }}</a>
+            |
+            <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+        </div>
+        {% else %}
+            <div class="title_page">
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                |
+                <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+            </div>
+        {% endif %}
         {% for message in app.session.flashBag.get('success') %}
         <div class="message">
             {{ message }}

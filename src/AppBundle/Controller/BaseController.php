@@ -1,15 +1,14 @@
 <?php
 
-namespace AppBundle\Controller\User;
+namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
 use AppBundle\Entity\User;
-use AppBundle\Entity\Vant;
+use AppBundle\Form\SearchFormType;
 use AppBundle\Form\VantFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
 class BaseController extends Controller
@@ -17,7 +16,7 @@ class BaseController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         if ($this->isGranted('ROLE_USER') == false)
             return $this->redirect('/login');
@@ -28,31 +27,36 @@ class BaseController extends Controller
     /**
      * @Route("/profile/{username}", name="profile_page")
      * @param User $user
-     * @param Request $request
      * @return Response
      */
-    public function showAction(User $user, Request $request)
+    public function showAction(User $user)
     {
         if (!$user) {
             throw $this->createNotFoundException(
-                'No found'
+                'Not found'
             );
         }
 
-        if(($user->getId() == $this->getUser()->getId())) {
-            if ($request->isMethod('POST')) {
+        $form = false;
+        $formSearch = $this->createForm(SearchFormType::class)->createView();
 
+        $em = $this->getDoctrine()->getManager()->getRepository('AppBundle:Vant');
+        if ($this->isGranted('ROLE_USER')) {
+            if($user->getId() == $this->getUser()->getId()) {
+                $vants = $user->getVants();
+                $form = $this->createForm(VantFormType::class)->createView();
+            } else {
+                $vants = $em->findBy(['user' => $user, 'type !=' => 'private']);
             }
+        } else {
+            $vants = $em->findBy(['user' => $user, 'type' => 'public']);
         }
-
-        $vants = $user->getVants();
-
-        $form = $this->createForm(VantFormType::class);
 
         return $this->render('user/show.html.twig', [
             'user' => $user,
             'vants' => $vants,
-            'form' => ($user->getId() == $this->getUser()->getId()) ? $form->createView() : false,
+            'form' => $form,
+            'formSearch' => $formSearch,
         ]);
     }
 }

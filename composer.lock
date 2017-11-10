@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "80f9bff9b996c0d90eaee07b85b352c2",
+    "content-hash": "3c7ef828482592cb4d6988a0bfb32eac",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -3045,6 +3045,49 @@
                 "framework"
             ],
             "time": "2017-10-05T23:40:32+00:00"
+        },
+        {
+            "name": "techwilk/twig-hashtagify",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TechWilk/twig-hashtagify.git",
+                "reference": "0ea21d02651171fb7758af49fd3c6ab189c67444"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TechWilk/twig-hashtagify/zipball/0ea21d02651171fb7758af49fd3c6ab189c67444",
+                "reference": "0ea21d02651171fb7758af49fd3c6ab189c67444",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "~1.27|~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "TechWilk": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christopher Wilkinson",
+                    "email": "git@wilk.tech"
+                }
+            ],
+            "description": "TWIG filter to turn hashtags into html links.",
+            "homepage": "https://github.com/TechWilk/TWIG-Hashtagify",
+            "keywords": [
+                "extension",
+                "filter",
+                "hashtag",
+                "twig"
+            ],
+            "time": "2017-05-30T09:03:24+00:00"
         },
         {
             "name": "twig/twig",

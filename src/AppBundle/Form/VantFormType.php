@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,9 +15,7 @@ class VantFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', TextareaType::class, [
-                'required' => false
-            ])
+            ->add('content', TextareaType::class)
             ->add('type', ChoiceType::class, [
                 'choices'  => [
                     'Public' => 'public',
@@ -24,6 +23,9 @@ class VantFormType extends AbstractType
                     'Private' => 'private'
                 ],
                 'choice_translation_domain' => 'messages'
+            ])
+            ->add('image', FileType::class, [
+                'required' => false,
             ])
             ->add('save', SubmitType::class, array(
                 'attr' => array('class' => 'save'),

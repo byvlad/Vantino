@@ -1,0 +1,10 @@
+{% if create is defined %}
+    {{ form_start(form, {'action': path('vant_new'), 'multipart': true}) }}
+{% else %}
+    {{ form_start(form) }}
+{% endif %}
+    {{ form_widget(form.content, { 'attr': {'placeholder': 'Enter your vant'} }) }}<br />
+    {{ form_widget(form.image) }}
+    {{ form_widget(form.type, { 'attr': {'class': 'foo'} }) }}<br />
+    {{ form_widget(form.save, { 'label': buttonText }) }}
+{{ form_end(form) }}

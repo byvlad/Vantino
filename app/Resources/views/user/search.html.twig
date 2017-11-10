@@ -1,0 +1,17 @@
+{% set title = "Search" %}
+{% extends 'base.html.twig' %}
+{% block title %}Search - #{{ hashtag }}{% endblock %}
+
+{% block body %}
+    {% if vants %}
+        {{ include('user/vant/_vant.html.twig', {
+            'vants' : vants,
+        }) }}
+    {% else %}
+        <div class="error">
+            Not found vants with these hashtag!
+        </div>
+    {% endif %}
+
+    {{ include('user/_search_form.html.twig') }}
+{% endblock %}

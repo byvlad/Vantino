@@ -1,0 +1,14 @@
+{% for vant in vants %}
+    <div class="box1">
+        <b>{{ vant.user.username }}</b>, {{ vant.createdAt|date('d.m.Y, H:i:s') }}:<br />
+        {{ vant.content|hashtagify|nl2br }}
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% if vant.user.id == app.user.id %}
+                <br /><br />
+                [<a href="{{ path('vant_edit', {id: vant.id}) }}">редактировать</a>]
+                |
+                [<a href="{{ path('vant_remove', {id: vant.id}) }}">удалить</a>]
+            {% endif %}
+        {% endif %}
+    </div>
+{% endfor %}
