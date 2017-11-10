@@ -64,7 +64,7 @@ class SearchController extends Controller
 
             foreach ($words as $word) {
                 if($word{0} == '#') {
-                    // andWhere не работает, использовал or Where
+                    // andWhere не работает, использовал orWhere
                     $vants->orWhere('vant.content LIKE ?' . $i++);
                 } else {
                     $vants->orWhere('vant.content LIKE ?' . $i++);

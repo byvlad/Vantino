@@ -8,8 +8,6 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\User;
-use AppBundle\Entity\Vant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nelmio\Alice\Fixtures;
