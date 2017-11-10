@@ -1,5 +1,4 @@
 {% for vant in vants %}
-    {% dump(vant) %}
     <div class="box1">
         <b>{{ vant.user.username }}</b>, {{ vant.createdAt|date('d.m.Y, H:i:s') }}:<br />
         {{ vant.content|hashtagify|nl2br }}

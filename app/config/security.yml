@@ -19,6 +19,7 @@ security:
             security: false
 
         main:
+            http_basic: ~
             anonymous: ~
             # activate different ways to authenticate
 
