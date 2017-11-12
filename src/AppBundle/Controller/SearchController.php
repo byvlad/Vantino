@@ -38,7 +38,7 @@ class SearchController extends Controller
         $vants = $vants->getQuery()->execute();
 
         return $this->render('user/search.html.twig', [
-            'hashtag' => $hashtag,
+            'hashtag' => '#'.$hashtag,
             'vants' => $vants,
             'formSearch' => $formSearch,
         ]);

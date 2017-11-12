@@ -5,11 +5,6 @@
 
 {% block body %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="title_page">
-            <a href="{{ path('profile_page', {'username' : app.user.username}) }}">{{ app.user.username }}</a>
-            |
-        <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
-        </div>
         <div class="message">
             {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
         </div>

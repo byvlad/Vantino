@@ -1,6 +1,6 @@
 {% set title = "Search" %}
 {% extends 'base.html.twig' %}
-{% block title %}Search - #{{ hashtag }}{% endblock %}
+{% block title %}Search - {{ hashtag }}{% endblock %}
 
 {% block body %}
     {% if vants %}
@@ -9,7 +9,7 @@
         }) }}
     {% else %}
         <div class="error">
-            Not found vants with these hashtag!
+            No results for this query!
         </div>
     {% endif %}
 
