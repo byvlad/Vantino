@@ -59,18 +59,27 @@ class SearchController extends Controller
         $vants = $em->createQueryBuilder('vant');
 
         if(count($words) > 0) {
+            $countHashtags = sizeof(
+                array_filter($words, function ($word) {
+                        if ($word{0} == '#') {
+                            return $word;
+                        }
+                    }
+                )
+            );
+
             $i = 0;
             $parameters = [];
 
             foreach ($words as $word) {
-                if($word{0} == '#') {
-                    // andWhere не работает, использовал orWhere
-                    $vants->orWhere('vant.content LIKE ?' . $i++);
+                if($word{0} == '#' and $countHashtags > 1) {
+                    $vants->andWhere('vant.content LIKE ?' . $i++);
                 } else {
                     $vants->orWhere('vant.content LIKE ?' . $i++);
                 }
                 $parameters[] = '%' . $word . '%';
             }
+
             $vants->setParameters($parameters);
         }
 
